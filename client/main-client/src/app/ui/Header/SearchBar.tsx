@@ -9,6 +9,7 @@ export const SearchBar = ({ placeholder }: SearchBarProps) => {
     const searchBarRef = useRef<HTMLInputElement>(null)
     const keyEventHandler: any = (event: KeyboardEvent) => {
         if (event) {
+            console.log(event);
             if (event.ctrlKey && event.code === 'Space') {
                 event.preventDefault();
                 searchBarRef.current?.focus();
