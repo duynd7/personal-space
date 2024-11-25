@@ -1,10 +1,13 @@
 "use client"
 
-import { ReactElement, useState } from "react";
+import { ReactNode, useState } from "react";
+import { IconBike } from "../icons/IconBike";
+import { IconPickUp } from "../icons/IconPickUp";
+import React from "react";
 
 type PromotionBannerDeliveryOption = {
     name: string,
-    iconPath: string
+    iconNode: ReactNode
 }
 
 export const PromotionBanner = () => {
@@ -13,11 +16,11 @@ export const PromotionBanner = () => {
     let selections: PromotionBannerDeliveryOption[] = [
         {
             name: "Delivery",
-            iconPath: ""
+            iconNode: <IconBike />
         },
         {
             name: "Pickup",
-            iconPath: ""
+            iconNode: <IconPickUp />
         }
     ];
 
@@ -34,16 +37,18 @@ export const PromotionBanner = () => {
                     <div className="w-full h-fit bg-white rounded-lg p-4">
                         <div className="flex flex-row gap-4">
                             {selections.map((option, index) => {
+                                let selected = index === optionIndex;
                                 return (
-                                    <div key={index} className={`flex flex-row p-2 rounded-md cursor-pointer
-                                    ${optionIndex === index ?
+                                    <div key={index} className={`flex flex-row p-2 items-center rounded-md cursor-pointer
+                                    ${selected ?
                                             "bg-primary text-white"
                                             :
                                             "text-black"}`
                                     }
                                         onClick={onClickOption.bind(this, index)}
                                     >
-                                        <p className="font-bold">{option.name}</p>
+                                        {React.cloneElement(option.iconNode as React.ReactElement<any>, { fill: (selected ? "#ffffff" : "#000000"), size: 5 })}
+                                        <p className="font-bold pl-2">{option.name}</p>
                                     </div>
                                 )
                             })}
@@ -58,26 +63,28 @@ export const PromotionBanner = () => {
                                 </span>
                                 <input
                                     placeholder="Input your address..."
-                                    className="bg-transparent ml-2 w-5/6"
+                                    className="bg-transparent ml-2 w-5/6 grow"
                                 />
                             </div>
-                            <div className="w-1/6 text-white font-bold m-2">
+                            <div className="w-1/6 text-white font-bold m-2 cursor-pointer">
                                 <div className="bg-primary flex flex-row h-full rounded-md p-2">
                                     <svg className="w-6 h-6 stroke-white"
                                         xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none">
                                         <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
-                                    <p>Find Food</p>
+                                    <p className="pl-4">Find Food</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div className="w-2/6 flex flex-col justify-end">
+                    <img
+                        className="w-fit"
+                        src="./images/noodle_promotion.png"
+                    />
+                </div>
             </div>
         </div>
     )
-}
-
-function userState(arg0: number): { selectedOptionIndex: any; } {
-    throw new Error("Function not implemented.");
 }

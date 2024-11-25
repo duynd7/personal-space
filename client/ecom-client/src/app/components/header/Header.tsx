@@ -19,7 +19,7 @@ export const Header = () => {
     }, [setUserData])
 
     return (
-        <div className="w-screen h-20 bg-neutral flex flex-row items-center justify-center px-4 gap-4">
+        <div className="w-full h-20 bg-neutral flex flex-row items-center justify-center px-4 gap-4">
             <div className="w-1/12">
                 <Logo />
             </div>

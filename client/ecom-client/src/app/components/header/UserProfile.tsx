@@ -5,7 +5,7 @@ export const UserProfile = () => {
     const { userData } = useUserData();
 
     return (
-        <div>
+        <div className="px-4">
             {!userData ?
                 <button className="bg-primary rounded-md p-2 text-white font-bold" >Sign in</button>
                 :
