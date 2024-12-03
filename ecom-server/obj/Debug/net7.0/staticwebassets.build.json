@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "rAJtjxtkZxa2KK3aEgX65Y9Mad4VExM+sKd4i/QROic=",
+  "Source": "ecom-server",
+  "BasePath": "_content/ecom-server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

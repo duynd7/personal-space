@@ -1,68 +1,40 @@
+"use client"
+
+import useFetch from "@/app/hooks/UseFetch";
+import { ItemsList } from "./ItemsList";
 import { PromotionData, PromotionEntry } from "./promotion_list/PromotionEntry";
+import { SpinLoader } from "../skeleton/SpinLoader";
 
 export const PromotionList = () => {
-    let promotions: PromotionData[] = [
-        {
-            id: "PRM_0001",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0002",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0003",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0004",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0005",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0005",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0005",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0005",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0005",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0005",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0005",
-            imagePath: "./images/promo_0001.png"
-        },
-        {
-            id: "PRM_0005",
-            imagePath: "./images/promo_0001.png"
-        }
-    ];
+    let { data, loading, error } = useFetch<PromotionData[]>("http://localhost:5142/cheat/promotionlist");
 
-    return (
-        <div className="h-fit w-full bg-white p-4">
-            <div className="flex space-x-2 snap-proximity snap-x overflow-x-scroll">
-                {promotions.map((promotion: PromotionData, index) => {
-                    return (
-                        <div key={index} className="snap-center">
-                            <PromotionEntry id={promotion.id} imagePath={promotion.imagePath} />
-                        </div>
-                    )
-                })}
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center m-auto h-52 bg-slate-100">
+                <SpinLoader />
             </div>
-        </div>
-    )
+        )
+    }
+    if (error) {
+        return (
+            <p>Errors: {error}</p>
+        )
+    }
+
+    if (data) {
+        return (
+            <div className="h-fit w-full p-4">
+                <ItemsList items={[...data.map(promotion => {
+                    return (
+                        <PromotionEntry id={promotion.id} imagePath={promotion.imagePath} />
+                    )
+                })]} />
+            </div>
+        )
+    }
+    else {
+        return (
+            <></>
+        )
+    }
 }

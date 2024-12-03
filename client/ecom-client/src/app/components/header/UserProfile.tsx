@@ -1,13 +1,18 @@
 "use client"
 import { useUserData } from "@/app/hooks/UserDataContext"
+import { getLoginUrl } from "@/app/utils/auth";
 
 export const UserProfile = () => {
     const { userData } = useUserData();
 
+    const signIn = () => {
+        window.location.href = getLoginUrl();
+    }
+
     return (
         <div className="px-4">
             {!userData ?
-                <button className="bg-primary rounded-md p-2 text-white font-bold" >Sign in</button>
+                <button onClick={signIn} className="bg-primary rounded-md p-2 text-white font-bold" >Sign in</button>
                 :
                 <div className="flex flex-row gap-2 items-center float-end">
                     <p className="font-bold">

@@ -8,7 +8,7 @@ export const PromotionEntry = (promotionData: PromotionData) => {
 
     return (
         <div
-            className="min-w-72 h-40 rounded-md overflow-hidden bg-cover snap-center"
+            className="min-w-72 h-40 rounded-md overflow-hidden bg-cover snap-center select-none"
             style={style}
         >
             <div className="relative top-2 w-fit h-fit bg-secondary rounded-r-md">

@@ -4,9 +4,9 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 interface UserData {
     id: string;
-    name: string;
-    email: string;
-    avatarUrl: string
+    name?: string;
+    email?: string;
+    avatarUrl?: string
 }
 
 interface UserContextType {

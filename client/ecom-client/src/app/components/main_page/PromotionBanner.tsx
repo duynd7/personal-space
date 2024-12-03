@@ -28,6 +28,8 @@ export const PromotionBanner = () => {
         setOptionIndex(index);
     }
 
+    const iconSize = 20;
+
     return (
         <div className="h-[30rem] bg-gradient-to-l from-primary to-secondary">
             <div className="w-full h-full flex flex-row">
@@ -47,7 +49,7 @@ export const PromotionBanner = () => {
                                     }
                                         onClick={onClickOption.bind(this, index)}
                                     >
-                                        {React.cloneElement(option.iconNode as React.ReactElement<any>, { fill: (selected ? "#ffffff" : "#000000"), size: 5 })}
+                                        {React.cloneElement(option.iconNode as React.ReactElement<any>, { fill: (selected ? "#ffffff" : "#000000"), size: iconSize })}
                                         <p className="font-bold pl-2">{option.name}</p>
                                     </div>
                                 )
@@ -80,7 +82,8 @@ export const PromotionBanner = () => {
                 </div>
                 <div className="w-2/6 flex flex-col justify-end">
                     <img
-                        className="w-fit"
+                        className="w-fit select-none"
+                        draggable={false}
                         src="./images/noodle_promotion.png"
                     />
                 </div>
